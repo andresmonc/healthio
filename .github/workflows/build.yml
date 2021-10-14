@@ -10,6 +10,11 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+   inputs:
+      service:
+        description: 'name of the microservice (directory)'     
+        required: true
+        default: 'template'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -23,23 +28,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Get Current Pull Request
-        uses: 8BitJonny/gh-get-current-pr@1.0.1
-        id: pr
-        with:
-          github-token: ${{ secrets.GIT_TOKEN }}
-          filterOutClosed: true
+#       - name: Get Current Pull Request
+#         uses: 8BitJonny/gh-get-current-pr@1.0.1
+#         id: pr
+#         with:
+#           github-token: ${{ secrets.GIT_TOKEN }}
+#           filterOutClosed: true
 
-      - id: file_changes
-        name: File Changes
-        uses: trilom/file-changes-action@v1.2.3
-        with:
-          prNumber: $
-          pushBefore: ''
-          pushAfter: ''
+#       - id: file_changes
+#         name: File Changes
+#         uses: trilom/file-changes-action@v1.2.3
+#         with:
+#           prNumber: $
+#           pushBefore: ''
+#           pushAfter: ''
 
-      - name: Ouput File Changes
-        run: echo '$'
+#       - name: Ouput File Changes
+#         run: echo '$'
         
       # setup jdk and validate gradle
       - name: Set up JDK 11
@@ -55,10 +60,10 @@ jobs:
       - name: Run one "build"
         run: echo Hello, one!
         working-directory: applications
-        if: contains(steps.file_changes.outputs.files , '"applications/')
+        if: contains(steps.file_changes.outputs.files , '"applications/') || ${{ github.event.inputs.environment }} == 'applications'
 
       - name: Run two "build"
-        if: contains(steps.file_changes.outputs.files , '"template/')
+        if: contains(steps.file_changes.outputs.files , '"template/') || ${{ github.event.inputs.environment }} == 'template'
         working-directory: template
         run: echo Hello, two!
         
