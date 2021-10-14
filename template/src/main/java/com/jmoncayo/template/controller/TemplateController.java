@@ -1,6 +1,5 @@
 package com.jmoncayo.template.controller;
 
-import java.rmi.ServerException;
 import java.util.List;
 
 import com.jmoncayo.template.model.Template;
