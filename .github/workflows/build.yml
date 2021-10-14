@@ -69,7 +69,7 @@ jobs:
         run: |
           echo ${{contains(steps.file_changes.outputs.files , 'template/')}}
           echo ${{ github.event.inputs.service }}
-          echo ${{ github.event.inputs.service }} == 'template' }}
+          echo ${{ github.event.inputs.service == 'template' }}
         
       - uses: actions/checkout@v2
       - name: Set up JDK 11
