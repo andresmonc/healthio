@@ -60,10 +60,10 @@ jobs:
       - name: Run one "build"
         run: echo Hello, one!
         working-directory: applications
-        if: contains(steps.file_changes.outputs.files , '"applications/') || ${{ github.event.inputs.environment }} == 'applications'
+        if: contains(steps.file_changes.outputs.files , '"applications/') || ${{ github.event.inputs.service }} == 'applications'
 
       - name: Run two "build"
-        if: contains(steps.file_changes.outputs.files , '"template/') || ${{ github.event.inputs.environment }} == 'template'
+        if: contains(steps.file_changes.outputs.files , '"template/') || ${{ github.event.inputs.service }} == 'template'
         working-directory: template
         run: echo Hello, two!
         
