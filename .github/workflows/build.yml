@@ -66,7 +66,7 @@ jobs:
       - name: Run two "build"
         if: contains(steps.file_changes.outputs.files , 'template/') || ${{ github.event.inputs.service }} == 'template'
         working-directory: template
-        run: echo Hello, two!
+        run: echo "contains(steps.file_changes.outputs.files , 'template/')"
         
         
       - uses: actions/checkout@v2
