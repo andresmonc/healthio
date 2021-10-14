@@ -54,21 +54,17 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - name: Make gradlew executable
-        working-directory: ${{github.event.inputs.service}}
-        run: chmod +x ./gradlew
 
+      # build jars for specific microservices
 
-      # build jar for specific microservices
-
-      - name: build application service
-        if: contains(steps.file_changes.outputs.files , 'application/') || github.event.inputs.service == 'application' 
+      - name: build applications service
+        if: contains(steps.file_changes.outputs.files , 'applications/') || github.event.inputs.service == 'applications' 
         working-directory: applications
         run:  | 
           chmod +x ./gradlew
           ./gradlew build
           
-      - name: build template service
+      - name: build templates service
         if: contains(steps.file_changes.outputs.files , 'template/') || github.event.inputs.service == 'template' 
         working-directory: template
         run:  | 
