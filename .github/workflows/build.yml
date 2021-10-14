@@ -54,8 +54,7 @@ jobs:
           distribution: 'adopt'
       - name: Validate Gradle wrapper
         uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      
-      
+        
       # Runs a single command using the runners shell
       - name: Run one "build"
         if: false
@@ -66,19 +65,5 @@ jobs:
       - name: Run two "build"
         if: contains(steps.file_changes.outputs.files , 'template/') || github.event.inputs.service == 'template' 
         working-directory: template
-        run: |
-          echo ${{contains(steps.file_changes.outputs.files , 'template/')}}
-          echo ${{ github.event.inputs.service }}
-          echo ${{ github.event.inputs.service == 'template' }}
-          echo ${{ contains(steps.file_changes.outputs.files , 'template/') || github.event.inputs.service == 'template' }}
-        
-      - uses: actions/checkout@v2
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-      - name: Validate Gradle wrapper
-        uses: gradle/wrapper-validation-action@e6e38bacfdf1a337459f332974bb2327a31aaf4b
-      - name: Build with Gradle
         run: ./gradlew build
+
