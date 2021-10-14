@@ -64,7 +64,7 @@ jobs:
         working-directory: applications
 
       - name: Run two "build"
-        if: contains(steps.file_changes.outputs.files , 'template/') || ${{ github.event.inputs.service }} == 'template'
+        if: contains(steps.file_changes.outputs.files , 'template/') || github.event.inputs.service == 'template' 
         working-directory: template
         run: |
           echo ${{contains(steps.file_changes.outputs.files , 'template/')}}
