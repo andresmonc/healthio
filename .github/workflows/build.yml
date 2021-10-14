@@ -58,7 +58,8 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: Run one "build"
-        if: contains(steps.file_changes.outputs.files , '"applications/') || ${{ github.event.inputs.service }} == 'applications'
+        if: false
+#         if: contains(steps.file_changes.outputs.files , '"applications/') || ${{ github.event.inputs.service }} == 'applications'
         run: echo Hello, one!
         working-directory: applications
 
