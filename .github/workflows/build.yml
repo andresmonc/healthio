@@ -57,15 +57,21 @@ jobs:
       - name: Make gradlew executable
         working-directory: ${{github.event.inputs.service}}
         run: chmod +x ./gradlew
-      # Runs a single command using the runners shell
-      - name: Run one "build"
-        if: false
-#         if: contains(steps.file_changes.outputs.files , '"applications/') || ${{ github.event.inputs.service }} == 'applications'
-        run: echo Hello, one!
-        working-directory: applications
 
-      - name: Run two "build"
+
+      # build jar for specific microservices
+
+      - name: build application service
+        if: contains(steps.file_changes.outputs.files , 'application/') || github.event.inputs.service == 'application' 
+        working-directory: applications
+        run:  | 
+          chmod +x ./gradlew
+          ./gradlew build
+          
+      - name: build template service
         if: contains(steps.file_changes.outputs.files , 'template/') || github.event.inputs.service == 'template' 
         working-directory: template
-        run: ./gradlew build
+        run:  | 
+          chmod +x ./gradlew
+          ./gradlew build
 
