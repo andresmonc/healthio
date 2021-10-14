@@ -9,12 +9,19 @@ public class Template {
     private String id;
 
     private String name;
+
+    public Template(){
+        
+    }
+
+    public Template(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
     
     public String getId() {
         return id;
     }
-
-
 
     public void setId(String id) {
         this.id = id;
@@ -32,11 +39,4 @@ public class Template {
         this.name = name;
     }
 
-
-
-    public Template(String id, String name) {
-        super();
-        this.id = id;
-        this.name = name;
-    }
 }
