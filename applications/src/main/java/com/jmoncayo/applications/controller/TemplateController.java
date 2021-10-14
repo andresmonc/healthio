@@ -1,10 +1,9 @@
-package com.jmoncayo.template.controller;
+package com.jmoncayo.applications.controller;
 
-import java.rmi.ServerException;
 import java.util.List;
 
-import com.jmoncayo.template.model.Template;
-import com.jmoncayo.template.repository.TemplateRepository;
+import com.jmoncayo.applications.model.Template;
+import com.jmoncayo.applications.repository.TemplateRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

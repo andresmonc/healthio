@@ -1,6 +1,6 @@
-package com.jmoncayo.template.repository;
+package com.jmoncayo.applications.repository;
 
-import com.jmoncayo.template.model.Template;
+import com.jmoncayo.applications.model.Template;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;

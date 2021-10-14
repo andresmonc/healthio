@@ -1,4 +1,4 @@
-package com.jmoncayo.template.model;
+package com.jmoncayo.applications.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
